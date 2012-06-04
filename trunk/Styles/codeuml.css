@@ -1,0 +1,324 @@
+/* browsertiles. 2010. Paul M. Watson <paul@paulmwatson.com> */
+/* #TODO: Fix SegoeWP distribution. */
+/*
+@font-face
+{
+  font-family: SegoeWP;
+  src: url('fonts/SegoeWP.ttf');
+}
+
+@font-face
+{
+  font-family: SegoeWPLight;
+  src: url('fonts/SegoeWP-Light.ttf');
+}
+*/
+
+html, body
+{
+  background-color: #353535;
+  color: #fff;
+  font-family: SegoeWPLight, Century Gothic, helvetica, sans-serif;
+  height: 100%;
+  overflow: hidden;
+  width: 100%;
+}
+
+body
+{
+  background-size: 100% auto;
+}
+
+h1
+{
+  font-size: 30px;
+}
+
+
+
+.CodeMirror 
+{
+    font-size: 10pt;
+}
+.CodeMirror pre.CodeMirror-cursor
+{
+    border-left: 1em solid lightgreen;
+}
+div.CodeMirror-selected
+{
+    background: lightgreen;
+    color: black;
+}
+.CodeMirror-focused div.CodeMirror-selected
+{
+    background: lightgreen;
+    color: Black;
+}
+        
+div.CodeMirror
+{
+    height: 98%;
+    cursor: text;
+}
+div.CodeMirror-scroll
+{
+    height: 100%;
+    cursor: text;
+}
+        
+        
+/* Scrollbar for IE */
+body
+{
+    scrollbar-face-color: #AAAAAA;
+    scrollbar-highlight-color: #555555;
+    scrollbar-3dlight-color: #353535;
+    scrollbar-darkshadow-color: #353535;
+    scrollbar-shadow-color: #AAAAAA;
+    scrollbar-arrow-color: #000000;
+    scrollbar-track-color: #353535;
+}
+        
+/*scroll bar for safari & chrome*/
+
+::-webkit-scrollbar {
+width: 15px;
+height: 15px;
+cursor: move;
+}
+
+::-webkit-scrollbar-button:start:decrement,
+::-webkit-scrollbar-button:end:increment {
+height: 1px;
+display: block;
+background-color: #353535;
+}
+
+::-webkit-scrollbar-button:horizontal:start:decrement,
+::-webkit-scrollbar-button:horizontal:end:increment {
+height: 1px;
+display: block;
+background-color: #353535;
+}
+
+::-webkit-scrollbar-track-piece {
+background-color: #353535;
+cursor: move;
+}
+
+::-webkit-scrollbar-thumb:vertical,
+::-webkit-scrollbar-thumb:horizontal
+{
+background-color: #AAAAAA;
+border: 1px solid #AAAAAA;
+-webkit-border-radius: 6px;
+}
+        
+.unselectable 
+{
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+            
+#header
+{
+    height: 50px;
+}
+
+#header > h1
+{
+    font-family: courier new;
+    color: White;
+    float: left;
+    font-size: 50px;
+    font-weight: lighter;
+}
+
+#header > h2
+{
+    font-weight: lighter;
+    color: White;
+    float: left;
+}
+        
+h2 > a
+{
+    color: White;
+    text-decoration: none;
+    border-bottom: 1px dotted green;
+}
+        
+#header
+{
+    padding: 1em;
+}
+        
+#menu
+{
+    margin-right: 10px;
+    float: right;
+}
+
+#menu div.button
+{
+    margin-top: 0px;
+    float: left;
+    margin-right: 5px;
+}
+        
+#ticker
+{
+    position: absolute;
+    bottom: 0px;
+    background: #353535; 
+    width: 100%;
+}
+
+#menu > a
+{
+    text-decoration: none;
+    border-bottom: 1px dotted blue;
+    color: white;
+}
+
+div.poweredby
+{
+    margin-right: 10px;
+    font-size: 70%;
+    float: left;
+}
+
+div.poweredby > a
+{
+    text-decoration: none;
+    color: ivory;
+    border-bottom: 1px dashed ivory;
+}
+        
+#MySplitter
+{
+    /* Height is set to match window size in $().ready() below */
+    border: 10px solid transparent;
+    min-width: 600px;
+    min-height: 300px;
+}
+
+.SplitterPane
+{
+    overflow: auto;
+}
+
+.vsplitbar
+{
+    width: 30px;
+    background: url(img/vgrabber.gif) no-repeat center;
+}
+
+.vsplitbar.active, .vsplitbar:hover
+{
+    background-color: #c66;
+    width: 30px;
+    opacity: 0.5;
+    filter: alpha(opacity=50); /* IE */
+}
+        
+#accordion
+{
+    background: #353535;
+    font-size: 10pt;
+}
+        
+.bluebox
+{
+    background-color: #1BA1E2;
+}
+        
+div.button
+{
+    position: relative;
+    width: 60px;
+    height: 50px;
+    background-color: #1BA1E2;
+    margin-top: 10px;
+    margin-left: 5px;
+    margin-bottom: 10px;
+    padding: 5px;
+    overflow: hidden;
+    cursor: pointer;
+}
+div.button > div.icon
+{
+    position: absolute;
+    right: 5px;
+    overflow: hidden;
+    font-size: 14pt;
+}
+div.button > div.title
+{
+    position: absolute;
+    bottom: 5px;
+    font-size: 8pt;
+    font-weight: bold;
+}
+        
+#umltext
+{
+    width: 98%;
+    height: 98%;
+    background: transparent;
+    border: none;
+    font-size: 16pt;
+    color: white;
+}
+#umlpreview
+{
+    width: 98%;
+    height: 98%;
+    background-color: #353535;
+}
+        
+#umlimage_container
+{
+    width: 98%;
+    height: 98%;
+    overflow: auto;
+    position: relative;
+}
+#umlsnippets
+{
+    padding: 0;
+    margin: 0;
+    overflow: auto;
+    width: 100%;
+    height: 98%;
+            
+}
+#umlsnippets h2
+{
+    font-size: 10pt;
+    font-weight: bold;
+}
+pre.umlsnippet
+{
+    display: none;
+}
+#scrollable
+{
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+        
+#ProgressIndicator
+{
+    display: none;
+    position: absolute;
+    right: 16px;
+    top: 0px;
+    z-index: 6000;
+}
+        
