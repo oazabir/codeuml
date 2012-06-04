@@ -1,0 +1,4 @@
+@startuml test.png
+Alice -> Bob: Hello
+Bob --> Alice: Hi
+@enduml
