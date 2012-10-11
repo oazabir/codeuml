@@ -29,6 +29,7 @@
         if (lastUmlDiagram == null)
             lastUmlDiagram = DEFAULT_DIAGRAM_TYPE;
 
+
         $(document).ready(function () {
 
             //setIframeBackground();
@@ -97,20 +98,7 @@
 
             // -------------------- Begin UML Code editor -----------------------------
 
-
             defaultUmlText = $('#umltext').val();
-
-            // restore previously saved UML
-            var existingUml = readCookie('uml');
-            if (existingUml != null && $.trim(existingUml).length > 0) {
-                try {
-                    var decoded = $.base64.decode(existingUml);
-                    $('#umltext').val(decoded);
-                }
-                catch (e) {
-
-                }
-            }
 
             myCodeMirror = CodeMirror.fromTextArea($('#umltext').get(0),
             {
@@ -121,18 +109,38 @@
 
             // -------------------- End UML Code editor -----------------------------
 
-            refreshDiagram();
+            // -------------------- Load/Restore UML diagram -----------------------------
 
+            // If URL has a diagram location, then load that diagram
+            if (document.location.href.indexOf('?') > 0) {
+                var diagramUrl = document.location.href.substr(document.location.href.indexOf('?') + 1);                
+                $.get("GetDiagram.ashx?id=" + encodeURI(diagramUrl), function (result) {
+                    myCodeMirror.setValue(result);                    
+                });
+            }
+            else {
+
+                // restore previously saved UML
+                var existingUml = readCookie('uml');
+                if (existingUml != null && $.trim(existingUml).length > 0) {
+                    try {
+                        var decoded = $.base64.decode(existingUml);
+                        myCodeMirror.setValue(decoded);
+                    }
+                    catch (e) {
+
+                    }
+                }
+            }
+            
             $('#umlimage').bind('load', function () {
                 lastTimer = null;
                 $('#ProgressIndicator').hide();
                 refreshDiagram();
                 $(this).fadeTo(0, 0.5, function () { $(this).fadeTo(300, 1.0); });
             });
+
         });
-
-
-        // ------------------- Begin Diagram Drawing ----------------------
 
         var lastUmlText = "";
         var lastTimer = null;
@@ -219,6 +227,12 @@
             myCodeMirror.setValue(defaultUmlText);
         }
 
+        function menu_share() {
+            $.post("Share.ashx", { uml: myCodeMirror.getValue() }, function (url) {
+                document.location= "?" + url;                
+            }, "text");
+        }
+
         function menu_save() {
 
             $.post("SendUml.ashx", { uml: myCodeMirror.getValue() }, function (result) {
@@ -261,7 +275,7 @@
                         New</div>
                 </div>
             </a>
-            <a href="javascript:menu_save()">
+            <a href="javascript:menu_share()">
                 <div class="button">
                     <div class="icon">
                         &hearts;</div>
