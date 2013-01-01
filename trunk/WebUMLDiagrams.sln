@@ -1,24 +1,24 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "WebUMLDiagrams", ".", "{477A229D-5068-4D52-83E9-573C87EF4C4F}"
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Codeuml", ".", "{477A229D-5068-4D52-83E9-573C87EF4C4F}"
 	ProjectSection(WebsiteProperties) = preProject
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv3.5"
 		Debug.AspNetCompiler.VirtualPath = "/WebUMLDiagrams"
-		Debug.AspNetCompiler.PhysicalPath = "..\WebUMLDiagrams\"
+		Debug.AspNetCompiler.PhysicalPath = "."
 		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\WebUMLDiagrams\"
 		Debug.AspNetCompiler.Updateable = "true"
 		Debug.AspNetCompiler.ForceOverwrite = "true"
 		Debug.AspNetCompiler.FixedNames = "false"
 		Debug.AspNetCompiler.Debug = "True"
 		Release.AspNetCompiler.VirtualPath = "/WebUMLDiagrams"
-		Release.AspNetCompiler.PhysicalPath = "..\WebUMLDiagrams\"
+		Release.AspNetCompiler.PhysicalPath = "..\Codeuml\"
 		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\WebUMLDiagrams\"
 		Release.AspNetCompiler.Updateable = "true"
 		Release.AspNetCompiler.ForceOverwrite = "true"
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.Debug = "False"
-		VWDPort = "53735"
+		VWDPort = "12606"
 	EndProjectSection
 EndProject
 Global
