@@ -6,8 +6,8 @@
 <head runat="server">
     <title>Codeuml.com</title>
     <link href="Styles/reset.css" rel="stylesheet" type="text/css" />
-    <link href="Styles/codeuml.css" rel="stylesheet" type="text/css" />
     <link href="Scripts/codemirror.css" rel="stylesheet" type="text/css" />
+    <link href="Styles/codeuml.css" rel="stylesheet" type="text/css" />
     <link href="Styles/ticker-style.css" rel="Stylesheet" type="text/css" />
 
     <script src="Scripts/jquery-1.7.1.min.js" type="text/javascript"></script>
@@ -29,6 +29,10 @@
         if (lastUmlDiagram == null)
             lastUmlDiagram = DEFAULT_DIAGRAM_TYPE;
 
+        var diagramUrl = "";
+        if (document.location.href.indexOf('?') > 0) {
+            diagramUrl = document.location.href.substr(document.location.href.indexOf('?') + 1).trim();
+        }
 
         $(document).ready(function () {
 
@@ -59,6 +63,8 @@
             // -------------------- End Splitter -----------------------------
 
     
+            // --------------- Begin UML snippet bar ------------------
+
             $("#umlsnippets").find(".button").click(function () {
                 var diagramType = $(this).parent().attr("class");
 
@@ -93,7 +99,6 @@
                 refreshDiagram();
             });
 
-
             // -------------------- End UML Snippet Bar -----------------------------
 
             // -------------------- Begin UML Code editor -----------------------------
@@ -112,14 +117,12 @@
             // -------------------- Load/Restore UML diagram -----------------------------
 
             // If URL has a diagram location, then load that diagram
-            if (document.location.href.indexOf('?') > 0) {
-                var diagramUrl = document.location.href.substr(document.location.href.indexOf('?') + 1);                
+            if (diagramUrl.length > 0) {
                 $.get("GetDiagram.ashx?id=" + encodeURI(diagramUrl), function (result) {
                     myCodeMirror.setValue(result);                    
                 });
             }
             else {
-
                 // restore previously saved UML
                 var existingUml = readCookie('uml');
                 if (existingUml != null && $.trim(existingUml).length > 0) {
@@ -135,7 +138,7 @@
             
             $('#umlimage').bind('load', function () {
                 lastTimer = null;
-                $('#ProgressIndicator').hide();
+                hideProgress();
                 refreshDiagram();
                 $(this).fadeTo(0, 0.5, function () { $(this).fadeTo(300, 1.0); });
             });
@@ -158,7 +161,7 @@
                         && validDiagramText(umltext); 
 
                     if (umltextchanged) {
-                        $('#ProgressIndicator').show();
+                        showProgress();
 
                         lastUmlText = umltext;
 
@@ -217,6 +220,14 @@
             createCookie("t", lastUmlDiagram, 30);
         }
 
+        function showProgress() {
+            $('#ProgressIndicator').show();
+        }
+
+        function hideProgress() {
+            $('#ProgressIndicator').hide();
+        }
+
         // ------------------- End Diagram Drawing ----------------------
 
 
@@ -225,16 +236,29 @@
         function menu_new() {
             changeDiagramType(DEFAULT_DIAGRAM_TYPE);
             myCodeMirror.setValue(defaultUmlText);
+            eraseCookie("t");
+            if (diagramUrl.length > 0) {
+                document.location = document.location.pathname;
+            }
         }
 
         function menu_share() {
-            $.post("Share.ashx", { uml: myCodeMirror.getValue() }, function (url) {
-                document.location= "?" + url;                
-            }, "text");
+            showProgress();
+            if (diagramUrl.length > 0 ) {
+                $.post("Share.ashx", { uml: myCodeMirror.getValue(), id: diagramUrl }, function (url) {
+                    hideProgress();
+                });
+            }
+            else {
+                $.post("Share.ashx", { uml: myCodeMirror.getValue() }, function (url) {
+                    document.location = "?" + url;
+                    hideProgress();
+                }, "text");
+            }
         }
 
         function menu_save() {
-
+            
             $.post("SendUml.ashx", { uml: myCodeMirror.getValue() }, function (result) {
                 var key = result;
                 document.location = "getimage.ashx?saveMode=1&key=" + key;
@@ -518,10 +542,10 @@ deactivate B
             <div class="SplitterPane">
                 <div id="umlimage_container">
                     <img id="umlimage" src="img/defaultdiagram.png" />
-                    <div id="ticker">
-                        News ticker
-                    </div>
                 </div>             
+                <div id="ticker">
+                 News ticker
+                </div>
             </div>
         </div>
         <!-- #CenterAndRight -->
