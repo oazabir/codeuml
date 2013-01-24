@@ -17,8 +17,9 @@
     <script src="Scripts/codemirror.js" type="text/javascript"></script>
     <script src="Scripts/cookie.js" type="text/javascript"></script>
     <script src="Scripts/jquery.base64.js" type="text/javascript"></script>
-    <script src="Scripts/jquery.ticker.js" type="text/javascript"></script>
-    <script src="http://omaralzabir.com/ticker.php" type="text/javascript"></script>
+    <!--<script src="Scripts/jquery.ticker.js" type="text/javascript"></script>
+    <script src="http://omaralzabir.com/ticker.php" type="text/javascript"></script>-->
+
     <script type="text/javascript">
 
         var myCodeMirror;
@@ -287,7 +288,12 @@
         <h1>
             <div class="title">
                 codeuml</div>
+
         </h1>
+<!--        <div id="ticker">
+            News ticker
+        </div>-->
+
         <div id="menu">
             <div class="poweredby">
                 Powered by <a href="http://plantuml.sourceforge.net">Plantuml</a></div>
@@ -543,9 +549,6 @@ deactivate B
                 <div id="umlimage_container">
                     <img id="umlimage" src="img/defaultdiagram.png" />
                 </div>             
-                <div id="ticker">
-                 News ticker
-                </div>
             </div>
         </div>
         <!-- #CenterAndRight -->
