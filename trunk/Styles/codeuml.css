@@ -172,10 +172,11 @@ h2 > a
         
 #ticker
 {
-    position: absolute;
-    bottom: 10px;
+    /*position: absolute;*/
+    float: left; 
     background: #353535; 
-    width: 100%;
+    width: 200px;
+
 }
 
 #menu > a
@@ -285,8 +286,8 @@ div.button > div.title
 {
     width: 98%;
     height: 98%;    
-    padding-top: 40px;
-    margin-top: -30px;
+    /*padding-top: 40px;
+    margin-top: -30px;*/
         
     overflow: auto;
     position: relative;
