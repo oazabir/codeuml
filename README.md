@@ -4,11 +4,11 @@ Read details about this project from:
 
 http://www.codeproject.com/Articles/397629/Codeuml-design-UML-diagrams-as-fast-as-you-can-cod
 
-http://codeuml.googlecode.com/files/codeuml-op.gif
+![Codeuml Screenshot](https://raw.githubusercontent.com/oazabir/codeuml/master/img/codeuml-op.gif)
 
 # Use it live at:
 
-http://codeuml.com
+## http://codeuml.com
 
 # License
 Please donate the following license fee to any prominent charity and show me a receipt. I will be happy to send you a written signed license.
